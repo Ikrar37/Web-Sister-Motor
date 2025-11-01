@@ -70,10 +70,72 @@
             <div class="modal-body">
                 <div id="cartItems"></div>
                 <div class="cart-total" id="cartTotal"></div>
+                
+                <!-- Form Checkout -->
+                <div class="checkout-form" id="checkoutForm" style="display: none;">
+                    <h3 class="form-title">Informasi Pembayaran</h3>
+                    
+                    <!-- Informasi Rekening -->
+                    <div class="bank-info">
+                        <h4>Transfer ke Rekening:</h4>
+                        <div class="bank-details">
+                            <div class="bank-item">
+                                <strong>Bank BCA</strong>
+                                <p>No. Rekening: <span class="account-number">1234567890</span></p>
+                                <p>Atas Nama: Sister Motor</p>
+                            </div>
+                            <div class="bank-item">
+                                <strong>Bank Mandiri</strong>
+                                <p>No. Rekening: <span class="account-number">0987654321</span></p>
+                                <p>Atas Nama: Sister Motor</p>
+                            </div>
+                        </div>
+                        <p class="payment-note">⚠️ Mohon transfer sesuai total pembayaran</p>
+                    </div>
+                    
+                    <!-- Form Data Pembeli -->
+                    <div class="buyer-form">
+                        <h4>Data Pembeli</h4>
+                        
+                        <div class="form-group">
+                            <label for="buyerName">Nama Lengkap <span class="required">*</span></label>
+                            <input type="text" id="buyerName" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="buyerEmail">Email Aktif <span class="required">*</span></label>
+                            <input type="email" id="buyerEmail" placeholder="contoh@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="buyerPhone">No. WhatsApp <span class="required">*</span></label>
+                            <input type="tel" id="buyerPhone" placeholder="08xxxxxxxxxx" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="buyerAddress">Alamat Lengkap <span class="required">*</span></label>
+                            <textarea id="buyerAddress" rows="3" placeholder="Masukkan alamat lengkap untuk pengiriman" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentProof">Upload Bukti Pembayaran <span class="required">*</span></label>
+                            <div class="file-upload-wrapper" onclick="document.getElementById('paymentProof').click()">
+                                <input type="file" id="paymentProof" accept="image/*" required style="display: none;">
+                                <div class="file-upload-text">
+                                    <span id="fileName">📷 Pilih file gambar (JPG, PNG)</span>
+                                </div>
+                            </div>
+                            <div id="imagePreview" class="image-preview"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="checkout-btn" onclick="checkout()">
-                    Checkout via WhatsApp
+                <button class="checkout-btn" id="checkoutBtn" onclick="proceedToCheckout()">
+                    Lanjutkan ke Pembayaran
+                </button>
+                <button class="submit-order-btn" id="submitBtn" style="display: none;" onclick="submitOrder()">
+                    Kirim Pesanan via WhatsApp
                 </button>
             </div>
         </div>
