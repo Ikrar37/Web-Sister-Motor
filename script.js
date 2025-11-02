@@ -5,7 +5,7 @@ const services = [
         name: "Service Rutin Motor",
         description: "Service berkala untuk motor Anda, termasuk pengecekan menyeluruh",
         price: 150000,
-        image: "Service Rutin",
+        image: "images/Servis rutin.jpg", // GANTI dengan URL gambar Anda
         category: "service"
     },
     {
@@ -13,15 +13,7 @@ const services = [
         name: "Tune Up Motor",
         description: "Tune up lengkap untuk performa optimal motor Anda",
         price: 200000,
-        image: "Tune Up",
-        category: "service"
-    },
-    {
-        id: 9,
-        name: "Servis Ringan",
-        description: "Perawatan ringan meliputi ganti oli, filter, dan pengecekan dasar",
-        price: 100000,
-        image: "Servis Ringan",
+        image: "images/Tune uo.webp", // GANTI dengan URL gambar Anda
         category: "service"
     },
     {
@@ -29,7 +21,7 @@ const services = [
         name: "Servis Berat",
         description: "Perbaikan dan perawatan komprehensif untuk masalah motor yang kompleks",
         price: 500000,
-        image: "Servis Berat",
+        image: "images/Servis berat.jpg", // GANTI dengan URL gambar Anda
         category: "service"
     }
 ];
@@ -37,26 +29,26 @@ const services = [
 const products = [
     {
         id: 3,
-        name: "Oli Mesin Premium",
+        name: "Oli Motul",
         description: "Oli mesin berkualitas tinggi untuk berbagai jenis motor",
         price: 100000,
-        image: "Oli Mesin",
+        image: "images/5.png", // GANTI dengan URL gambar Anda
         category: "product"
     },
     {
         id: 4,
-        name: "Ban Motor",
+        name: "FDR MP Series",
         description: "Ban berkualitas berbagai ukuran dan merek",
         price: 350000,
-        image: "Ban Motor",
+        image: "images/6.png", // GANTI dengan URL gambar Anda
         category: "product"
     },
     {
         id: 5,
         name: "Kampas Rem",
-        description: "Kampas rem original dan aftermarket",
+        description: "Kampas rem original dan aftermarket berkualitas",
         price: 85000,
-        image: "Kampas Rem",
+        image: "images/4.png", // GANTI dengan URL gambar Anda
         category: "product"
     },
     {
@@ -64,7 +56,7 @@ const products = [
         name: "Aki Motor",
         description: "Aki motor berbagai tipe dan kapasitas",
         price: 250000,
-        image: "Aki Motor",
+        image: "images/7.png", // GANTI dengan URL gambar Anda
         category: "product"
     },
     {
@@ -72,7 +64,7 @@ const products = [
         name: "Filter Udara",
         description: "Filter udara original untuk berbagai motor",
         price: 75000,
-        image: "Filter Udara",
+        image: "images/8.png", // GANTI dengan URL gambar Anda
         category: "product"
     },
     {
@@ -80,7 +72,7 @@ const products = [
         name: "Busi Motor",
         description: "Busi motor berbagai merek dan tipe",
         price: 35000,
-        image: "Busi Motor",
+        image: "images/9.png", // GANTI dengan URL gambar Anda
         category: "product"
     }
 ];
@@ -94,7 +86,11 @@ function loadServices() {
     const grid = document.getElementById('servicesGrid');
     grid.innerHTML = services.map(service => `
         <div class="product-card">
-            <div class="product-image">${service.image}</div>
+            <div class="product-image">
+                <img src="${service.image}" 
+                     alt="${service.name}" 
+                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:60px 20px;color:#999;text-align:center\\'>📷 Gambar tidak tersedia</div>';">
+            </div>
             <div class="product-info">
                 <div class="product-name">${service.name}</div>
                 <div class="product-description">${service.description}</div>
@@ -109,7 +105,11 @@ function loadProducts() {
     const grid = document.getElementById('productsGrid');
     grid.innerHTML = products.map(product => `
         <div class="product-card">
-            <div class="product-image">${product.image}</div>
+            <div class="product-image">
+                <img src="${product.image}" 
+                     alt="${product.name}"
+                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:60px 20px;color:#999;text-align:center\\'>📷 Gambar tidak tersedia</div>';">
+            </div>
             <div class="product-info">
                 <div class="product-name">${product.name}</div>
                 <div class="product-description">${product.description}</div>
@@ -483,7 +483,7 @@ async function submitOrder() {
 
         const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
         messageUrl += `*Total: Rp ${total.toLocaleString('id-ID')}*%0A%0A`;
-        messageUrl += '✅ Bukti pembayaran telah disiapkan';
+        messageUrl += 'Bukti pembayaran telah dilampirkan. Terima kasih!';
 
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${messageUrl}`;
         

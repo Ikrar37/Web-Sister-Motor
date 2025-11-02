@@ -151,17 +151,19 @@ nav a:hover {
     gap: 35px;
 }
 
-/* Services Grid - 4 Cards in One Row */
+/* Services Grid - 3 Cards Centered */
 #servicesGrid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: center;
     gap: 25px;
     max-width: 1400px;
     margin: 0 auto;
+    flex-wrap: wrap;
 }
 
 #servicesGrid .product-card {
     width: 100%;
+    max-width: 350px;
 }
 
 .product-card {
@@ -179,16 +181,40 @@ nav a:hover {
     box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
+/* STYLING BARU UNTUK GAMBAR PRODUK */
 .product-image {
     width: 100%;
     height: 200px;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    background: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.9rem;
-    color: #666;
-    border-bottom: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar akan memenuhi container dengan proporsi */
+    transition: transform 0.3s ease;
+}
+
+/* Efek zoom saat hover */
+.product-card:hover .product-image img {
+    transform: scale(1.1);
+}
+
+/* Jika gambar tidak tersedia/error */
+.product-image img[src=""],
+.product-image img:not([src]) {
+    display: none;
+}
+
+.product-image:empty::before {
+    content: "📷 No Image";
+    color: #999;
+    font-size: 1rem;
 }
 
 .product-info {
@@ -401,19 +427,6 @@ nav a:hover {
     transform: scale(1.02);
 }
 
-/* Footer */
-footer {
-    background-color: #000000;
-    color: #ffffff;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 60px;
-}
-
-footer p {
-    margin: 5px 0;
-}
-
 /* Contact Section */
 .contact-section {
     background-color: #f9f9f9;
@@ -472,72 +485,6 @@ footer {
 
 footer p {
     margin: 5px 0;
-}
-
-/* Responsive Design */
-@media (max-width: 1200px) {
-    #servicesGrid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .header-container {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .hero p {
-        font-size: 1rem;
-    }
-
-    .products-grid {
-        grid-template-columns: 1fr;
-    }
-
-    #servicesGrid {
-        grid-template-columns: 1fr;
-    }
-
-    .cart-button {
-        bottom: 20px;
-        right: 20px;
-        padding: 12px 20px;
-    }
-
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .quantity-controls {
-        width: 100%;
-        justify-content: center;
-    }
-
-    .remove-btn {
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 1.6rem;
-    }
-
-    .modal-content {
-        width: 95%;
-    }
 }
 
 /* Checkout Form Styles */
@@ -725,4 +672,70 @@ footer p {
     background-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    #servicesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #servicesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .cart-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 12px 20px;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .quantity-controls {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .remove-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.6rem;
+    }
+
+    .modal-content {
+        width: 95%;
+    }
 }
