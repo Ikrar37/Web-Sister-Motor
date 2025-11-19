@@ -1,11 +1,10 @@
-// Sample Products Data - GANTI DENGAN DATA PRODUK ANDA
 const services = [
     {
         id: 1,
         name: "Service Rutin Motor",
         description: "Service berkala untuk motor Anda, termasuk pengecekan menyeluruh",
         price: 150000,
-        image: "images/Servis rutin.jpg", // GANTI dengan URL gambar Anda
+        image: "images/Servis rutin.jpg", 
         category: "service"
     },
     {
@@ -13,7 +12,7 @@ const services = [
         name: "Tune Up Motor",
         description: "Tune up lengkap untuk performa optimal motor Anda",
         price: 200000,
-        image: "images/Tune uo.webp", // GANTI dengan URL gambar Anda
+        image: "images/Tune uo.webp", 
         category: "service"
     },
     {
@@ -21,7 +20,7 @@ const services = [
         name: "Servis Berat",
         description: "Perbaikan dan perawatan komprehensif untuk masalah motor yang kompleks",
         price: 500000,
-        image: "images/Servis berat.jpg", // GANTI dengan URL gambar Anda
+        image: "images/Servis berat.jpg", 
         category: "service"
     }
 ];
@@ -32,7 +31,7 @@ const products = [
         name: "Oli Motul",
         description: "Oli mesin berkualitas tinggi untuk berbagai jenis motor",
         price: 100000,
-        image: "images/5.png", // GANTI dengan URL gambar Anda
+        image: "images/5.png", 
         category: "product"
     },
     {
@@ -40,7 +39,7 @@ const products = [
         name: "FDR MP Series",
         description: "Ban berkualitas berbagai ukuran dan merek",
         price: 350000,
-        image: "images/6.png", // GANTI dengan URL gambar Anda
+        image: "images/6.png", 
         category: "product"
     },
     {
@@ -48,7 +47,7 @@ const products = [
         name: "Kampas Rem",
         description: "Kampas rem original dan aftermarket berkualitas",
         price: 85000,
-        image: "images/4.png", // GANTI dengan URL gambar Anda
+        image: "images/4.png", 
         category: "product"
     },
     {
@@ -56,7 +55,7 @@ const products = [
         name: "Aki Motor",
         description: "Aki motor berbagai tipe dan kapasitas",
         price: 250000,
-        image: "images/7.png", // GANTI dengan URL gambar Anda
+        image: "images/7.png", 
         category: "product"
     },
     {
@@ -64,7 +63,7 @@ const products = [
         name: "Filter Udara",
         description: "Filter udara original untuk berbagai motor",
         price: 75000,
-        image: "images/8.png", // GANTI dengan URL gambar Anda
+        image: "images/8.png", 
         category: "product"
     },
     {
@@ -72,7 +71,7 @@ const products = [
         name: "Busi Motor",
         description: "Busi motor berbagai merek dan tipe",
         price: 35000,
-        image: "images/9.png", // GANTI dengan URL gambar Anda
+        image: "images/9.png", 
         category: "product"
     }
 ];
@@ -201,7 +200,7 @@ function closeCart() {
 }
 
 // Checkout via WhatsApp dan Spreadsheet
-let isCheckingOut = false; // Flag untuk mencegah double submit
+let isCheckingOut = false; 
 
 async function checkout() {
     if (cart.length === 0) {
@@ -223,10 +222,8 @@ async function checkout() {
     checkoutBtn.style.opacity = '0.6';
 
     try {
-        // GANTI NOMOR WHATSAPP DI BAWAH INI (gunakan format internasional, contoh: 628123456789)
-        const phoneNumber = '6282246194259'; // GANTI DENGAN NOMOR WHATSAPP ANDA
+        const phoneNumber = '6282246194259'; 
         
-        // GANTI URL GOOGLE APPS SCRIPT DI BAWAH INI
         const spreadsheetUrl = 'https://script.google.com/macros/s/AKfycbxaBm5cPFv__jlf1kdpDQxi03ROt4uzbTjeApOD84p2RgUiZQkMN9JoMqq7H_1mu_E/exec'; // GANTI DENGAN URL APPS SCRIPT ANDA
         
         // Kirim data ke Google Spreadsheet
@@ -304,7 +301,7 @@ async function sendToSpreadsheet(url) {
         
         const response = await fetch(url, {
             method: 'POST',
-            mode: 'no-cors', // Penting untuk Google Apps Script
+            mode: 'no-cors', 
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -315,7 +312,6 @@ async function sendToSpreadsheet(url) {
         
     } catch (error) {
         console.error('Error mengirim data ke spreadsheet:', error);
-        // Tetap lanjutkan ke WhatsApp meskipun gagal kirim ke spreadsheet
     }
 }
 
@@ -447,7 +443,6 @@ async function submitOrder() {
         console.log('Image converted successfully');
         
         // Kirim data ke Google Spreadsheet dengan data pembeli dan bukti pembayaran
-        // Gunakan try-catch terpisah agar WhatsApp tetap terbuka meski spreadsheet gagal
         try {
             console.log('Mengirim data ke spreadsheet...');
             await sendToSpreadsheetWithBuyerData(spreadsheetUrl, {
@@ -514,7 +509,6 @@ async function submitOrder() {
 
 // Fungsi untuk menampilkan konfirmasi dan redirect
 function showRedirectConfirmation(whatsappUrl, seconds) {
-    // Buat overlay konfirmasi
     const overlay = document.createElement('div');
     overlay.id = 'redirectOverlay';
     overlay.style.cssText = `
@@ -694,6 +688,14 @@ function resetCheckoutForm() {
 loadServices();
 loadProducts();
 updateCart();
+
+// Fungsi untuk chat WhatsApp admin
+function chatAdmin() {
+    const phoneNumber = '6282246194259'; // Ganti dengan nomor WhatsApp admin
+    const message = 'Halo Sister Motor, saya ingin bertanya tentang...';
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
 
 // Logo upload handler (optional - untuk preview logo)
 // Anda bisa upload gambar logo dengan mengedit HTML atau menggunakan JavaScript
