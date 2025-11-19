@@ -775,3 +775,101 @@ footer p {
         width: 95%;
     }
 }
+
+/* Hero Section dengan Background Gambar */
+.hero {
+    background-image: url('images/bg\ bengkel2.jpg'); /* Ganti dengan path gambar Anda */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    padding: 120px 20px;
+    text-align: center;
+    position: relative;
+}
+
+.hero-overlay {
+    position: relative;
+    z-index: 2;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Overlay gelap untuk kontras teks */
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    background-color: #25D366;
+    color: #ffffff;
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    transition: transform 0.3s, background-color 0.3s;
+    z-index: 999;
+    text-decoration: none;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.05);
+    background-color: #1faa52;
+}
+
+/* Responsive untuk tombol WhatsApp */
+@media (max-width: 768px) {
+    .whatsapp-button {
+        bottom: 90px;
+        right: 20px;
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .hero {
+        padding: 80px 20px;
+    }
+    
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+}
