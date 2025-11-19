@@ -684,6 +684,72 @@ function resetCheckoutForm() {
     document.getElementById('submitBtn').style.display = 'none';
 }
 
+// Variabel untuk menyimpan layanan yang dipilih
+let selectedService = null;
+
+// Load services - TAMPILAN TETAP SAMA
+function loadServices() {
+    const grid = document.getElementById('servicesGrid');
+    grid.innerHTML = services.map(service => `
+        <div class="product-card" onclick="openServiceConfirmModal(${service.id})">
+            <div class="product-image">
+                <img src="${service.image}" 
+                     alt="${service.name}" 
+                     onerror="this.onerror=null; this.style.display='none'; this.parentElement.innerHTML='<div style=\\'padding:60px 20px;color:#999;text-align:center\\'>📷 Gambar tidak tersedia</div>';">
+            </div>
+            <div class="product-info">
+                <div class="product-name">${service.name}</div>
+                <div class="product-description">${service.description}</div>
+                <div class="product-price">Mulai dari Rp ${service.price.toLocaleString('id-ID')}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+// Open service confirmation modal
+function openServiceConfirmModal(serviceId) {
+    selectedService = services.find(service => service.id === serviceId);
+    
+    if (selectedService) {
+        document.getElementById('confirmServiceName').textContent = selectedService.name;
+        document.getElementById('serviceConfirmModal').style.display = 'flex';
+    }
+}
+
+// Close service confirmation modal
+function closeServiceConfirmModal() {
+    document.getElementById('serviceConfirmModal').style.display = 'none';
+    selectedService = null;
+}
+
+// Go to WhatsApp for service consultation
+function goToWhatsApp() {
+    if (!selectedService) return;
+    
+    const phoneNumber = '6282246194259'; // Ganti dengan nomor admin
+    const message = `Halo Sister Motor, saya ingin konsultasi tentang layanan: *${selectedService.name}*%0A%0ABisa tolong berikan informasi detail dan estimasi biayanya?`;
+    
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Tutup modal setelah redirect
+    closeServiceConfirmModal();
+}
+
+// Close modal when clicking outside (update untuk semua modal)
+window.onclick = function(event) {
+    const cartModal = document.getElementById('cartModal');
+    const serviceConfirmModal = document.getElementById('serviceConfirmModal');
+    
+    if (event.target === cartModal) {
+        closeCart();
+    }
+    
+    if (event.target === serviceConfirmModal) {
+        closeServiceConfirmModal();
+    }
+}
+
 // Initialize
 loadServices();
 loadProducts();

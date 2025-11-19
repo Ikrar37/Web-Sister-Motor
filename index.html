@@ -64,6 +64,31 @@
         </div>
     </section>
 
+    <!-- Service Confirmation Modal -->
+    <div id="serviceConfirmModal" class="modal">
+        <div class="modal-content confirm-modal">
+            <div class="modal-header">
+                <h2>Konsultasi Layanan</h2>
+                <span class="close" onclick="closeServiceConfirmModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="confirm-info">
+                    <div class="confirm-icon">💬</div>
+                    <h3 id="confirmServiceName"></h3>
+                    <p>Anda akan diarahkan ke WhatsApp untuk konsultasi langsung dengan admin mengenai layanan ini.</p>
+                    <div class="price-note">
+                        <p><strong>Biaya layanan tergantung kondisi motor</strong></p>
+                        <p>Admin akan memberikan estimasi setelah pengecekan</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeServiceConfirmModal()">Batal</button>
+                <button class="confirm-wa-btn" onclick="goToWhatsApp()">Lanjutkan ke WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Cart Modal -->
     <div id="cartModal" class="modal">
         <div class="modal-content">
